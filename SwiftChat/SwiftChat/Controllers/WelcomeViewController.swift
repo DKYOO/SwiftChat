@@ -81,7 +81,10 @@ class WelcomeViewController: UIViewController {
     //MARK: Methods to Buttons
     
     @objc func pushing() {
-        print("Hello Epta")
+        let RegisterViewController = RegisterViewController()
+        RegisterViewController.modalPresentationStyle = .fullScreen
+        self.present(RegisterViewController, animated: true, completion: nil)
+        print("button pressed")
     }
     
 
