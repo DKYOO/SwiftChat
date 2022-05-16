@@ -12,41 +12,51 @@ class RegisterViewController: UIViewController {
 	
 	//MARK: UIElements
 	
-	let viewOne: UIView = {
-		let UIview = UIView()
-		UIview.contentMode = .scaleAspectFill
-
-		UIview.translatesAutoresizingMaskIntoConstraints = false
-		return UIview
-	}()
-	
-	let viewTwo: UIView = {
-		let UIview = UIView()
-		UIview.contentMode = .scaleAspectFill
-		UIview.translatesAutoresizingMaskIntoConstraints = false
-		return UIview
-	}()
+//	let viewOne: UIView = {
+//		let UIview = UIView()
+//		UIview.contentMode = .scaleAspectFill
+//
+//		UIview.translatesAutoresizingMaskIntoConstraints = false
+//		return UIview
+//	}()
+//
+//	let viewTwo: UIView = {
+//		let UIview = UIView()
+//		UIview.contentMode = .scaleAspectFill
+//		UIview.translatesAutoresizingMaskIntoConstraints = false
+//		return UIview
+//	}()
 	
 	var emailTextfield: UITextField = {
 		let field = UITextField()
 		field.placeholder = "Your Email"
 		field.keyboardType = .emailAddress
-		field.background = UIImage(named: "textfield")
+//		field.background = UIImage(named: "textfield")
 		field.textAlignment = .center
-		field.backgroundColor = .green
-		field.layer.cornerRadius = 3
+		field.layer.borderWidth = 0.5
+		field.layer.borderColor = UIColor(named: "BrandBlue")?.cgColor
+		field.layer.shadowColor = UIColor.black.cgColor
+		field.layer.shadowOffset = .zero
+		field.layer.shadowRadius = 3
+		field.layer.shadowOpacity = 0.5
+		field.layer.cornerRadius = 10
 		field.translatesAutoresizingMaskIntoConstraints = false
 		return field
 	}()
 	
 	var passwordTextfield: UITextField = {
 		let field = UITextField()
-		field.placeholder = "Enter Password"
+		field.placeholder = "Create Password"
 		field.textContentType = .newPassword
 		field.isSecureTextEntry = true
-		field.background = UIImage(named: "textfield")
+		field.layer.borderWidth = 0.5
+		field.layer.borderColor = UIColor(named: "BrandBlue")?.cgColor
+		field.layer.shadowColor = UIColor.black.cgColor
+		field.layer.shadowOffset = .zero
+		field.layer.shadowRadius = 3
+		field.layer.shadowOpacity = 0.5
+		field.layer.cornerRadius = 10
 		field.textAlignment = .center
-		field.backgroundColor = .red
 		field.translatesAutoresizingMaskIntoConstraints = false
 		return field
 	}()
@@ -66,15 +76,19 @@ class RegisterViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setupUIViews()
-		view.addSubviews([viewOne,viewTwo,registerButton])
+//		setupUIViews()
+		view.addSubviews([emailTextfield,passwordTextfield,registerButton])
 		buildConstraints()
 	}
 	
-	func setupUIViews() {
-		viewOne.insertSubview(emailTextfield, at: 0)
-		viewTwo.insertSubview(passwordTextfield, at: 0)
-	}
+//	func setupUIViews() {
+//		viewOne.insertSubview(emailTextfield, at: 0)
+//		viewTwo.insertSubview(passwordTextfield, at: 0)
+//	}
+	
+//	override func viewWillLayoutSubviews() {
+//		<#code#>
+//	}
 	
 	//MARK: Constraints
 	
@@ -84,17 +98,17 @@ class RegisterViewController: UIViewController {
 		
 		NSLayoutConstraint.activate([
 			
-			viewOne.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
-			viewOne.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
-			viewOne.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
-			viewOne.heightAnchor.constraint(equalToConstant: 50),
+			emailTextfield.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+			emailTextfield.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
+			emailTextfield.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
+			emailTextfield.heightAnchor.constraint(equalToConstant: 50),
 			
-			viewTwo.topAnchor.constraint(equalTo: viewOne.bottomAnchor, constant: 15),
-			viewTwo.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
-			viewTwo.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
-			viewTwo.heightAnchor.constraint(equalToConstant: 50),
+			passwordTextfield.topAnchor.constraint(equalTo: emailTextfield.bottomAnchor, constant: 15),
+			passwordTextfield.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
+			passwordTextfield.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
+			passwordTextfield.heightAnchor.constraint(equalToConstant: 50),
 			
-			registerButton.topAnchor.constraint(equalTo: viewTwo.bottomAnchor, constant: 25),
+			registerButton.topAnchor.constraint(equalTo: passwordTextfield.bottomAnchor, constant: 25),
 			registerButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
 			registerButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
 			registerButton.heightAnchor.constraint(equalToConstant: 50)
@@ -109,7 +123,7 @@ class RegisterViewController: UIViewController {
 	
 	@objc func pushing() {
 		self.dismiss(animated: true, completion: nil)
-		print("Hello Epta")
+		print("Hello")
 	}
 	
 }

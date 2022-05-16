@@ -27,7 +27,7 @@ class WelcomeViewController: UIViewController {
         button.setTitleColor(.init(named: "BrandBlue"), for: .normal)
         button.backgroundColor = UIColor(named: "BrandLightBlue")
         button.layer.cornerRadius = 3
-        button.addTarget(self, action: #selector(pushing), for: .touchUpInside)
+        button.addTarget(self, action: #selector(pushLogIn), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -37,7 +37,7 @@ class WelcomeViewController: UIViewController {
         button.setTitle("Log In", for: .normal)
         button.backgroundColor = UIColor.systemTeal
         button.layer.cornerRadius = 3
-        button.addTarget(self, action: #selector(pushing), for: .touchUpInside)
+        button.addTarget(self, action: #selector(pushRegister), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -80,11 +80,18 @@ class WelcomeViewController: UIViewController {
     
     //MARK: Methods to Buttons
     
-    @objc func pushing() {
+    @objc func pushLogIn() {
         let RegisterViewController = RegisterViewController()
         RegisterViewController.modalPresentationStyle = .fullScreen
         self.present(RegisterViewController, animated: true, completion: nil)
-        print("button pressed")
+        print("button Register pressed")
+    }
+    
+    @objc func pushRegister() {
+        let logInViewController = LoginViewController()
+        logInViewController.modalPresentationStyle = .fullScreen
+        self.present(logInViewController, animated: true, completion: nil)
+        print("button Log In pressed")
     }
     
 
