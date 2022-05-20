@@ -6,32 +6,33 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
 	
 	
 	//MARK: UIElements
 	
-//	let viewOne: UIView = {
-//		let UIview = UIView()
-//		UIview.contentMode = .scaleAspectFill
-//
-//		UIview.translatesAutoresizingMaskIntoConstraints = false
-//		return UIview
-//	}()
-//
-//	let viewTwo: UIView = {
-//		let UIview = UIView()
-//		UIview.contentMode = .scaleAspectFill
-//		UIview.translatesAutoresizingMaskIntoConstraints = false
-//		return UIview
-//	}()
+	//	let viewOne: UIView = {
+	//		let UIview = UIView()
+	//		UIview.contentMode = .scaleAspectFill
+	//
+	//		UIview.translatesAutoresizingMaskIntoConstraints = false
+	//		return UIview
+	//	}()
+	//
+	//	let viewTwo: UIView = {
+	//		let UIview = UIView()
+	//		UIview.contentMode = .scaleAspectFill
+	//		UIview.translatesAutoresizingMaskIntoConstraints = false
+	//		return UIview
+	//	}()
 	
 	var emailTextfield: UITextField = {
 		let field = UITextField()
 		field.placeholder = "Your Email"
 		field.keyboardType = .emailAddress
-//		field.background = UIImage(named: "textfield")
+		//		field.background = UIImage(named: "textfield")
 		field.textAlignment = .center
 		field.layer.borderWidth = 0.5
 		field.layer.borderColor = UIColor(named: "BrandBlue")?.cgColor
@@ -76,19 +77,19 @@ class RegisterViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-//		setupUIViews()
+		//		setupUIViews()
 		view.addSubviews([emailTextfield,passwordTextfield,registerButton])
 		buildConstraints()
 	}
 	
-//	func setupUIViews() {
-//		viewOne.insertSubview(emailTextfield, at: 0)
-//		viewTwo.insertSubview(passwordTextfield, at: 0)
-//	}
+	//	func setupUIViews() {
+	//		viewOne.insertSubview(emailTextfield, at: 0)
+	//		viewTwo.insertSubview(passwordTextfield, at: 0)
+	//	}
 	
-//	override func viewWillLayoutSubviews() {
-//		<#code#>
-//	}
+	//	override func viewWillLayoutSubviews() {
+	//		<#code#>
+	//	}
 	
 	//MARK: Constraints
 	
@@ -122,8 +123,23 @@ class RegisterViewController: UIViewController {
 	//MARK: Methods to Buttons
 	
 	@objc func pushing() {
-		self.dismiss(animated: true, completion: nil)
-		print("Hello")
+		
+		if let email = emailTextfield.text, let password = passwordTextfield.text {
+			Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+				if let err = error {
+					DispatchQueue.main.async {
+						let alert = UIAlertController(title: "Error", message: "KYKY\(err.localizedDescription)" , preferredStyle: .alert)
+						alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+						alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+						self.present(alert, animated: false)
+					}
+				} else {
+					let chatViewController = ChatViewController()
+					chatViewController.modalPresentationStyle = .fullScreen
+					self.present(chatViewController, animated: true, completion: nil)
+				}
+			}
+		}
+		
 	}
-	
 }
