@@ -81,10 +81,8 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc func pushRegister() {
-        let RegisterViewController = RegisterViewController()
-        RegisterViewController.modalPresentationStyle = .fullScreen
-        self.present(RegisterViewController, animated: true, completion: nil)
-        print("button Register pressed")
+        let regVC = RegisterViewController()
+        navigationController?.pushViewController(regVC, animated: true)
     }
     
 //    @objc func pushRegister() {
@@ -96,17 +94,8 @@ class WelcomeViewController: UIViewController {
     
     @objc private func pushLogIn() {
         
-//        let rootVC = LoginViewController()
-//        let navVC = UINavigationController(rootViewController: rootVC)
-//        navVC.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Hello", style: .plain, target: self, action: #selector(dismissing))
-//        navVC.modalPresentationStyle = .fullScreen
-//        present(navVC, animated: true)
-//        
         let logInVC = LoginViewController()
-        logInVC.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Hello", style: .plain, target: self, action: #selector(dismissing))
-        print("Log In Tapped")
-        logInVC.modalPresentationStyle = .fullScreen
-        present(logInVC, animated: true)
+        navigationController?.pushViewController(logInVC, animated: true)
     }
     
     

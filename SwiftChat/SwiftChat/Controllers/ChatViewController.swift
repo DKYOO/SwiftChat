@@ -17,7 +17,6 @@ class ChatViewController: UIViewController {
     //MARK: UIElements
     
     private var tableView = UITableView()
-    private let cellsArray: Array =  ["HipHop", "Don't", "Stop"]
     
     let backgroundView: UIView = {
         let view = UIView()
@@ -39,8 +38,10 @@ class ChatViewController: UIViewController {
         title = "🏎 SwiftChat"
         //hide Back Button
         navigationItem.hidesBackButton = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(signOut))
         view.backgroundColor = .purple
         title = "Welcome to Chat"
+        
         view.addSubviews([backgroundView, tableView, bottomBar])
         buildConstraints()
         configureTableView()
@@ -67,9 +68,9 @@ class ChatViewController: UIViewController {
     func configureTableView() {
         
         //set row height
-        tableView.rowHeight = 200
+        tableView.rowHeight = 100
         //register cells
-        //        tableView.register(newCell.self, forCellReuseIdentifier: <#T##String#>)
+        tableView.register(NewCell.self, forCellReuseIdentifier: "new")
         
         //set constraints
         tableView.pin(to: view)
@@ -109,8 +110,9 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //        let cell = tableView.dequeueReusableCell(withIdentifier: newCell)
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "new")
+        cell?.selectionStyle = .none
+        return cell ?? UITableViewCell()
     }
     
     

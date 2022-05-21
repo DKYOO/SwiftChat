@@ -18,6 +18,7 @@
 		3295A4372823C1CD00C5F9FA /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3295A4362823C1CD00C5F9FA /* ChatViewController.swift */; };
 		32B6C7CB28245813009397C5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B6C7CA28245813009397C5 /* Extensions.swift */; };
 		32BE34662833EA6B00F33BE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32BE34652833EA6B00F33BE9 /* GoogleService-Info.plist */; };
+		32F53D1A283954D50026A0D0 /* NewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F53D19283954D50026A0D0 /* NewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		3295A4362823C1CD00C5F9FA /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		32B6C7CA28245813009397C5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		32BE34652833EA6B00F33BE9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		32F53D19283954D50026A0D0 /* NewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCell.swift; sourceTree = "<group>"; };
 		5CB839ECD39569E59908DE97 /* Pods-SwiftChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftChat.release.xcconfig"; path = "Target Support Files/Pods-SwiftChat/Pods-SwiftChat.release.xcconfig"; sourceTree = "<group>"; };
 		AFFACD6518F35825B5A5ED8D /* Pods-SwiftChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftChat.debug.xcconfig"; path = "Target Support Files/Pods-SwiftChat/Pods-SwiftChat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +121,7 @@
 				3295A4342823C1BF00C5F9FA /* RegisterViewController.swift */,
 				3295A4322823C1AC00C5F9FA /* LoginViewController.swift */,
 				3295A4362823C1CD00C5F9FA /* ChatViewController.swift */,
+				32F53D19283954D50026A0D0 /* NewCell.swift */,
 				32B6C7CA28245813009397C5 /* Extensions.swift */,
 			);
 			path = Controllers;
@@ -261,6 +264,7 @@
 			files = (
 				3295A4332823C1AC00C5F9FA /* LoginViewController.swift in Sources */,
 				3295A4352823C1BF00C5F9FA /* RegisterViewController.swift in Sources */,
+				32F53D1A283954D50026A0D0 /* NewCell.swift in Sources */,
 				3295A4052823C12800C5F9FA /* WelcomeViewController.swift in Sources */,
 				3295A4012823C12800C5F9FA /* AppDelegate.swift in Sources */,
 				3295A4372823C1CD00C5F9FA /* ChatViewController.swift in Sources */,

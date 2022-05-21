@@ -68,6 +68,7 @@ class LoginViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .cyan
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Hello", style: .plain, target: self, action: #selector(dismissing))
 		view.addSubviews([emailTextfield,passwordTextfield,logInButton])
 		buildConstraints()
 		
@@ -79,11 +80,6 @@ class LoginViewController: UIViewController {
 		
 		
 		NSLayoutConstraint.activate([
-			
-//			backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-//			backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//			backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
-//			backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 			
 			emailTextfield.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
 			emailTextfield.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
@@ -114,7 +110,7 @@ class LoginViewController: UIViewController {
 	}
 	
 	@objc func dismissing() {
-		dismiss(animated: true)
+		navigationController?.popViewController(animated: true)
 	}
 	
 	@objc func pushLogIn() {
@@ -131,9 +127,9 @@ class LoginViewController: UIViewController {
 					}
 				} else {
 					let chatViewController = ChatViewController()
-					chatViewController.modalPresentationStyle = .fullScreen
-//					self.navigationController?.pushViewController(chatViewController, animated: true)
-					self.present(chatViewController, animated: true, completion: nil)
+//					chatViewController.modalPresentationStyle = .fullScreen
+					self.navigationController?.pushViewController(chatViewController, animated: true)
+//					self.present(chatViewController, animated: true, completion: nil)
 					print("button LogIn  pressed")
 				}
 			}
