@@ -12,12 +12,12 @@ class LoginViewController: UIViewController {
 	
 	//MARK: UIElements
 	
-	let backgroundView: UIView = {
-		let view = UIView()
-		view.backgroundColor = .cyan
-		view.translatesAutoresizingMaskIntoConstraints = false
-		return view
-	}()
+//	let backgroundView: UIView = {
+//		let view = UIView()
+//		view.backgroundColor = .cyan
+//		view.translatesAutoresizingMaskIntoConstraints = false
+//		return view
+//	}()
 	
 	var emailTextfield: UITextField = {
 		let field = UITextField()
@@ -67,7 +67,8 @@ class LoginViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.addSubviews([backgroundView,emailTextfield,passwordTextfield,logInButton])
+		view.backgroundColor = .cyan
+		view.addSubviews([emailTextfield,passwordTextfield,logInButton])
 		buildConstraints()
 		
 	}
@@ -79,10 +80,10 @@ class LoginViewController: UIViewController {
 		
 		NSLayoutConstraint.activate([
 			
-			backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-			backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-			backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
-			backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//			backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+//			backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//			backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+//			backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 			
 			emailTextfield.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
 			emailTextfield.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
@@ -112,6 +113,10 @@ class LoginViewController: UIViewController {
 		print("Hello")
 	}
 	
+	@objc func dismissing() {
+		dismiss(animated: true)
+	}
+	
 	@objc func pushLogIn() {
 		
 		if let email = emailTextfield.text, let password = passwordTextfield.text {
@@ -127,6 +132,7 @@ class LoginViewController: UIViewController {
 				} else {
 					let chatViewController = ChatViewController()
 					chatViewController.modalPresentationStyle = .fullScreen
+//					self.navigationController?.pushViewController(chatViewController, animated: true)
 					self.present(chatViewController, animated: true, completion: nil)
 					print("button LogIn  pressed")
 				}

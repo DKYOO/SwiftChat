@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ChatViewController: UIViewController {
     
@@ -35,8 +36,11 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "🏎 SwiftChat"
+        //hide Back Button
+        navigationItem.hidesBackButton = true
         view.backgroundColor = .purple
-        title = "Hello"
+        title = "Welcome to Chat"
         view.addSubviews([backgroundView, tableView, bottomBar])
         buildConstraints()
         configureTableView()
@@ -55,21 +59,17 @@ class ChatViewController: UIViewController {
             
         ])
     }
-
+    
     
     //MARK: Methods
     
     
     func configureTableView() {
         
-       
-        
         //set row height
         tableView.rowHeight = 200
-        
         //register cells
-//        tableView.register(newCell.self, forCellReuseIdentifier: <#T##String#>)
-        
+        //        tableView.register(newCell.self, forCellReuseIdentifier: <#T##String#>)
         
         //set constraints
         tableView.pin(to: view)
@@ -77,6 +77,23 @@ class ChatViewController: UIViewController {
         //delegates and Data
         tableView.delegate = self
         tableView.dataSource = self
+        
+    }
+    
+    @objc private func signOut() {
+        
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            //go to the WelcomeViewController
+            navigationController?.popToRootViewController(animated: true)
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+        
+    }
+    
+    @objc private func sendMessage() {
         
     }
     
@@ -92,7 +109,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: newCell)
+        //        let cell = tableView.dequeueReusableCell(withIdentifier: newCell)
         return UITableViewCell()
     }
     

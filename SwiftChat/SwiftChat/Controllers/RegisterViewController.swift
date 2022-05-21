@@ -32,7 +32,6 @@ class RegisterViewController: UIViewController {
 		let field = UITextField()
 		field.placeholder = "Your Email"
 		field.keyboardType = .emailAddress
-		//		field.background = UIImage(named: "textfield")
 		field.textAlignment = .center
 		field.layer.borderWidth = 0.5
 		field.layer.borderColor = UIColor(named: "BrandBlue")?.cgColor
@@ -77,7 +76,7 @@ class RegisterViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		//		setupUIViews()
+		view.backgroundColor = .white
 		view.addSubviews([emailTextfield,passwordTextfield,registerButton])
 		buildConstraints()
 	}
@@ -95,23 +94,21 @@ class RegisterViewController: UIViewController {
 	
 	func buildConstraints() {
 		
-		view.backgroundColor = .white
-		
 		NSLayoutConstraint.activate([
 			
 			emailTextfield.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
-			emailTextfield.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
-			emailTextfield.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
+			emailTextfield.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 24),
+			emailTextfield.rightAnchor.constraint(equalTo:  view.safeAreaLayoutGuide.rightAnchor, constant: -24),
 			emailTextfield.heightAnchor.constraint(equalToConstant: 50),
 			
 			passwordTextfield.topAnchor.constraint(equalTo: emailTextfield.bottomAnchor, constant: 15),
-			passwordTextfield.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
-			passwordTextfield.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
+			passwordTextfield.leftAnchor.constraint(equalTo:  view.safeAreaLayoutGuide.leftAnchor, constant: 24),
+			passwordTextfield.rightAnchor.constraint(equalTo:  view.safeAreaLayoutGuide.rightAnchor, constant: -24),
 			passwordTextfield.heightAnchor.constraint(equalToConstant: 50),
 			
 			registerButton.topAnchor.constraint(equalTo: passwordTextfield.bottomAnchor, constant: 25),
-			registerButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
-			registerButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24),
+			registerButton.leftAnchor.constraint(equalTo:  view.safeAreaLayoutGuide.leftAnchor, constant: 24),
+			registerButton.rightAnchor.constraint(equalTo:  view.safeAreaLayoutGuide.rightAnchor, constant: -24),
 			registerButton.heightAnchor.constraint(equalToConstant: 50)
 			
 			

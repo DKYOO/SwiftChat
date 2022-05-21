@@ -27,7 +27,7 @@ class WelcomeViewController: UIViewController {
         button.setTitleColor(.init(named: "BrandBlue"), for: .normal)
         button.backgroundColor = UIColor(named: "BrandLightBlue")
         button.layer.cornerRadius = 3
-        button.addTarget(self, action: #selector(pushLogIn), for: .touchUpInside)
+        button.addTarget(self, action: #selector(pushRegister), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -37,7 +37,7 @@ class WelcomeViewController: UIViewController {
         button.setTitle("Log In", for: .normal)
         button.backgroundColor = UIColor.systemTeal
         button.layer.cornerRadius = 3
-        button.addTarget(self, action: #selector(pushRegister), for: .touchUpInside)
+        button.addTarget(self, action: #selector(pushLogIn), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -58,13 +58,9 @@ class WelcomeViewController: UIViewController {
         view.backgroundColor = .white
         
         NSLayoutConstraint.activate([
-            
-           
-            
+     
             welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             welcomeLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
-            
             
             registerButton.heightAnchor.constraint(equalToConstant: 50),
             registerButton.widthAnchor.constraint(equalTo: view.widthAnchor),
@@ -80,21 +76,40 @@ class WelcomeViewController: UIViewController {
     
     //MARK: Methods to Buttons
     
-    @objc func pushLogIn() {
+    @objc func dismissing() {
+        dismiss(animated: true)
+    }
+    
+    @objc func pushRegister() {
         let RegisterViewController = RegisterViewController()
         RegisterViewController.modalPresentationStyle = .fullScreen
         self.present(RegisterViewController, animated: true, completion: nil)
         print("button Register pressed")
     }
     
-    @objc func pushRegister() {
-        let logInViewController = LoginViewController()
-        logInViewController.modalPresentationStyle = .fullScreen
-        self.present(logInViewController, animated: true, completion: nil)
-        print("button Log In pressed")
+//    @objc func pushRegister() {
+//        let logInViewController = LoginViewController()
+//        logInViewController.modalPresentationStyle = .fullScreen
+//        self.present(logInViewController, animated: true, completion: nil)
+//        print("button Log In pressed")
+//    }
+    
+    @objc private func pushLogIn() {
+        
+//        let rootVC = LoginViewController()
+//        let navVC = UINavigationController(rootViewController: rootVC)
+//        navVC.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Hello", style: .plain, target: self, action: #selector(dismissing))
+//        navVC.modalPresentationStyle = .fullScreen
+//        present(navVC, animated: true)
+//        
+        let logInVC = LoginViewController()
+        logInVC.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Hello", style: .plain, target: self, action: #selector(dismissing))
+        print("Log In Tapped")
+        logInVC.modalPresentationStyle = .fullScreen
+        present(logInVC, animated: true)
     }
     
-
+    
 
 }
 
