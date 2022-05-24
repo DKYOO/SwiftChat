@@ -14,8 +14,8 @@ class WelcomeViewController: UIViewController {
     
     let welcomeLabel: CLTypingLabel = {
         let label = CLTypingLabel()
-        label.text = "🏎 SwiftChat"
-        label.textColor = UIColor(named: "BrandBlue")
+        label.text = K.appName
+        label.textColor = UIColor(named: K.BrandColors.blue)
         label.font = .systemFont(ofSize: 40, weight: .heavy)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -23,9 +23,9 @@ class WelcomeViewController: UIViewController {
     
     let registerButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Register", for: .normal)
-        button.setTitleColor(.init(named: "BrandBlue"), for: .normal)
-        button.backgroundColor = UIColor(named: "BrandLightBlue")
+        button.setTitle(K.register, for: .normal)
+        button.setTitleColor(.init(named: K.BrandColors.blue), for: .normal)
+        button.backgroundColor = UIColor(named: K.BrandColors.lightBlue)
         button.layer.cornerRadius = 3
         button.addTarget(self, action: #selector(pushRegister), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +34,7 @@ class WelcomeViewController: UIViewController {
     
     let logInButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Log In", for: .normal)
+        button.setTitle(K.logIn, for: .normal)
         button.backgroundColor = UIColor.systemTeal
         button.layer.cornerRadius = 3
         button.addTarget(self, action: #selector(pushLogIn), for: .touchUpInside)

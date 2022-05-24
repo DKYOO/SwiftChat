@@ -30,11 +30,11 @@ class RegisterViewController: UIViewController {
 	
 	var emailTextfield: UITextField = {
 		let field = UITextField()
-		field.placeholder = "Your Email"
+		field.placeholder = K.Placeholders.emailPlaceholderRegister
 		field.keyboardType = .emailAddress
 		field.textAlignment = .center
 		field.layer.borderWidth = 0.5
-		field.layer.borderColor = UIColor(named: "BrandBlue")?.cgColor
+		field.layer.borderColor = UIColor(named: K.BrandColors.blue)?.cgColor
 		field.layer.shadowColor = UIColor.black.cgColor
 		field.layer.shadowOffset = .zero
 		field.layer.shadowRadius = 3
@@ -46,11 +46,11 @@ class RegisterViewController: UIViewController {
 	
 	var passwordTextfield: UITextField = {
 		let field = UITextField()
-		field.placeholder = "Create Password"
+		field.placeholder = K.Placeholders.passwordPlaceholderRegister
 		field.textContentType = .newPassword
 		field.isSecureTextEntry = true
 		field.layer.borderWidth = 0.5
-		field.layer.borderColor = UIColor(named: "BrandBlue")?.cgColor
+		field.layer.borderColor = UIColor(named: K.BrandColors.blue)?.cgColor
 		field.layer.shadowColor = UIColor.black.cgColor
 		field.layer.shadowOffset = .zero
 		field.layer.shadowRadius = 3
@@ -63,7 +63,7 @@ class RegisterViewController: UIViewController {
 	
 	let registerButton: UIButton = {
 		let button = UIButton()
-		button.setTitle("Register", for: .normal)
+		button.setTitle(K.register, for: .normal)
 		button.backgroundColor = UIColor.systemTeal
 		button.layer.cornerRadius = 10
 		button.addTarget(self, action: #selector(pushing), for: .touchUpInside)
@@ -125,9 +125,9 @@ class RegisterViewController: UIViewController {
 			Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
 				if let err = error {
 					DispatchQueue.main.async {
-						let alert = UIAlertController(title: "Error", message: "KYKY\(err.localizedDescription)" , preferredStyle: .alert)
-						alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
-						alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+						let alert = UIAlertController(title: K.Errors.otherError, message: "\(err.localizedDescription)" , preferredStyle: .alert)
+						alert.addAction(UIAlertAction(title: K.Answers.yes, style: .default, handler: nil))
+						alert.addAction(UIAlertAction(title: K.Answers.no, style: .cancel, handler: nil))
 						self.present(alert, animated: false)
 					}
 				} else {
