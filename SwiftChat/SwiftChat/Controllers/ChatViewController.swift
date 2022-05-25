@@ -14,6 +14,14 @@ class ChatViewController: UIViewController {
 //        static let newCell = "newCell"
 //    }
     
+    //MARK: - Properties
+    
+    var messages: [Message] = [
+        Message(sender: "jeniffer91@hello.com", body: "Hey 👋"),
+        Message(sender: "jonh@yo.com", body: "Hello!"),
+        Message(sender: "jeniffer91@hello.com", body: "What's up")
+    ]
+    
     //MARK: UIElements
     
     private var tableView: UITableView = {
@@ -102,8 +110,8 @@ class ChatViewController: UIViewController {
         //set row height
         tableView.rowHeight = 100
         //register cells
-        tableView.register(NewCell.self, forCellReuseIdentifier: K.cellIndentifier)
-        
+//        tableView.register(NewCell.self, forCellReuseIdentifier: K.cellIndentifier)
+        tableView.register(UINib(nibName: K.nibName, bundle: nil), forCellReuseIdentifier: K.cellIndentifierXib)
         //set constraints
         //        tableView.pin(to: view)
         
@@ -157,14 +165,21 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        //returning number of elements in Chat content array
+        return messages.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIndentifier)
-        cell?.selectionStyle = .none
-        return cell ?? UITableViewCell()
+        /* returning cells and content with cell configuration
+        cell with all initializators in another file
+        this method triggered by previous returning count to configure each row in tableView */
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIndentifierXib, for: indexPath) as! MessageCell
+        cell.selectionStyle = .none
+        cell.label.text = messages[indexPath.row].body
+        tableView.separatorStyle = .none
+        return cell
+        //        ?? UITableViewCell()
     }
     
     

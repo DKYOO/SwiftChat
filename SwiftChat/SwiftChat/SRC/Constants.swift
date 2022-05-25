@@ -13,7 +13,9 @@ struct K {
     static let register = "Register"
     static let logIn = "Log In"
     static let logOut = "Log Out"
+    static let nibName = "MessageCell"
     static let cellIndentifier = "new"
+    static let cellIndentifierXib = "ReusableCell"
     
     struct Placeholders {
         static let emailPlaceholderRegister = "Your Email"
