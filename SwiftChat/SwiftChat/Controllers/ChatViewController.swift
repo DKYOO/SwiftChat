@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class ChatViewController: UIViewController {
     
@@ -16,11 +17,13 @@ class ChatViewController: UIViewController {
     
     //MARK: - Properties
     
-    var messages: [Message] = [
-        Message(sender: "jeniffer91@hello.com", body: "Hey 👋"),
-        Message(sender: "jonh@yo.com", body: "Hello!"),
-        Message(sender: "jeniffer91@hello.com", body: "What's up")
-    ]
+    let db = Firestore.firestore()
+    
+    var messages: [Message] = []
+//        Message(sender: "jeniffer91@hello.com", body: "Hey 👋"),
+//        Message(sender: "jonh@yo.com", body: "Hello!"),
+//        Message(sender: "jeniffer91@hello.com", body: "What's up")
+//    ]
     
     //MARK: UIElements
     
@@ -73,9 +76,9 @@ class ChatViewController: UIViewController {
         view.addSubviews([tableView, bottomBar])
         buildConstraints()
         configureTableView()
+        loadMessages()
         
     }
-    
     
     //MARK: Constraints
     
@@ -95,27 +98,25 @@ class ChatViewController: UIViewController {
             bottomBar.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             bottomBar.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             bottomBar.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            
-            
-            
+               
         ])
     }
     
-    
     //MARK: Methods
-    
     
     func configureTableView() {
         
-        //set row height
+        // set row height
         tableView.rowHeight = 100
-        //register cells
-//        tableView.register(NewCell.self, forCellReuseIdentifier: K.cellIndentifier)
-        tableView.register(UINib(nibName: K.nibName, bundle: nil), forCellReuseIdentifier: K.cellIndentifierXib)
-        //set constraints
-        //        tableView.pin(to: view)
         
-        //delegates and Data
+        //register cells
+        // tableView.register(NewCell.self, forCellReuseIdentifier: K.cellIndentifier)
+        tableView.register(UINib(nibName: K.nibName, bundle: nil), forCellReuseIdentifier: K.cellIndentifierXib)
+        
+        // set constraints
+        // tableView.pin(to: view)
+        
+        // delegates and Data
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -141,6 +142,34 @@ class ChatViewController: UIViewController {
         
     }
     
+    //method to load data from Data Base FireStore
+    
+    func loadMessages() {
+        
+        messages = []
+        
+        db.collection(K.FStore.collectionName).getDocuments { querySnapshot, error in
+            if let e = error {
+                print ("There was an issue retriving data from Firestore.\(e)")
+            } else {
+                if let snapshotDocuments = querySnapshot?.documents {
+                    for doc in snapshotDocuments {
+                        let data = doc.data()
+                        if let messageSender = data[K.FStore.senderField] as? String, let messageBody = data[K.FStore.bodyField] as? String {
+                            let newMessage = Message(sender: messageSender, body: messageBody)
+                            self.messages.append(newMessage)
+                            //ha - ha
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    
     @objc private func signOut() {
         
         let firebaseAuth = Auth.auth()
@@ -148,7 +177,7 @@ class ChatViewController: UIViewController {
             try firebaseAuth.signOut()
             //go to the WelcomeViewController
             navigationController?.popToRootViewController(animated: true)
-        } catch let signOutError as NSError {
+         } catch let signOutError as NSError {
             print(K.Errors.signOutError, signOutError)
         }
         
@@ -156,13 +185,22 @@ class ChatViewController: UIViewController {
     
     @objc private func sendMessage() {
         
+        if let messageBody = messageTextField.text, let messageSender = Auth.auth().currentUser?.email {
+            db.collection(K.FStore.collectionName).addDocument(data:[ K.FStore.senderField: messageSender, K.FStore.bodyField: messageBody]) { (error) in
+                if let e = error {
+                    print("This was an issue to saving data to firestore, \(e)")
+                } else {
+                    print ("Success save data")
+                }
+            }
+            
+        }
+        
     }
-    
     
 }
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //returning number of elements in Chat content array
@@ -179,13 +217,10 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         cell.label.text = messages[indexPath.row].body
         tableView.separatorStyle = .none
         return cell
-        //        ?? UITableViewCell()
+        // ?? UITableViewCell()
     }
     
-    
-    
 }
-
 
 //import UIKit
 //class ViewController: UIViewController {
