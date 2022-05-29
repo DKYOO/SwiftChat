@@ -30,7 +30,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeM-gT-TWY">
                                 <rect key="frame" x="60" y="0.0" width="322" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2QH-c5-rGU">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2QH-c5-rGU">
                                         <rect key="frame" x="10" y="10" width="302" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -67,7 +67,7 @@
                 <outlet property="Label" destination="2QH-c5-rGU" id="iF4-xh-JCc"/>
                 <outlet property="MessageBubble" destination="yeM-gT-TWY" id="fii-OT-W43"/>
                 <outlet property="leftImageView" destination="CJc-sv-a0m" id="LvA-D2-rmi"/>
-                <outlet property="rightImageView" destination="CJc-sv-a0m" id="DYP-v2-fGT"/>
+                <outlet property="rightImageView" destination="RvT-yV-loK" id="bzx-ai-xH1"/>
             </connections>
             <point key="canvasLocation" x="89.855072463768124" y="50.223214285714285"/>
         </tableViewCell>

@@ -13,6 +13,7 @@ class RegisterViewController: UIViewController {
 	
 	//MARK: UIElements
 	
+	//Comented view's for stack view
 	//	let viewOne: UIView = {
 	//		let UIview = UIView()
 	//		UIview.contentMode = .scaleAspectFill
@@ -127,7 +128,7 @@ class RegisterViewController: UIViewController {
 					DispatchQueue.main.async {
 						let alert = UIAlertController(title: K.Errors.otherError, message: "\(err.localizedDescription)" , preferredStyle: .alert)
 						alert.addAction(UIAlertAction(title: K.Answers.yes, style: .default, handler: nil))
-						alert.addAction(UIAlertAction(title: K.Answers.no, style: .cancel, handler: nil))
+						alert.addAction(UIAlertAction(title: K.Answers.ok, style: .cancel, handler: nil))
 						self.present(alert, animated: false)
 					}
 				} else {

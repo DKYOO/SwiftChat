@@ -37,9 +37,12 @@ class ChatViewController: UIViewController {
     
     let messageTextField: UITextField = {
         let text = UITextField()
-        text.font = .systemFont(ofSize: 20, weight: .light)
-        text.placeholder = "Write a message..."
-        text.textColor = .systemGreen
+        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
+        text.leftView = paddingView
+        text.leftViewMode = .always
+        text.font = .systemFont(ofSize: 20, weight: .medium)
+        text.placeholder = K.Placeholders.messagePlaceholder
+        text.textColor = .systemGray
         text.layer.cornerRadius = 7
         text.textAlignment = .left
         text.backgroundColor = .white
@@ -50,10 +53,12 @@ class ChatViewController: UIViewController {
     
     let sendButton: UIButton = {
         let button = UIButton(type: .system)
-        let config = UIImage.SymbolConfiguration(pointSize: 50, weight: .regular, scale: .large)
+        let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .medium, scale: .large)
         let trashImage = UIImage(systemName: "trash.circle", withConfiguration: config)
         button.setImage(trashImage, for: .normal)
         button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        button.doGlowAnimation(withColor: .purple, withEffect: .big)
+        
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
 
@@ -68,7 +73,6 @@ class ChatViewController: UIViewController {
         navigationItem.hidesBackButton = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: K.logOut, style: .plain, target: self, action: #selector(signOut))
         view.backgroundColor = .purple
-        title = "Welcome to Chat"
         view.addSubviews([tableView, bottomBar])
         buildConstraints()
         configureTableView()
@@ -88,7 +92,7 @@ class ChatViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             
             bottomBar.topAnchor.constraint(equalTo: tableView.bottomAnchor),
             bottomBar.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
@@ -119,13 +123,13 @@ class ChatViewController: UIViewController {
         NSLayoutConstraint.activate([
             messageTextField.topAnchor.constraint(equalTo: bottomBar.topAnchor, constant: 20),
             messageTextField.leftAnchor.constraint(equalTo: bottomBar.leftAnchor, constant: 20),
-            messageTextField.heightAnchor.constraint(equalToConstant: 50),
+            messageTextField.heightAnchor.constraint(equalToConstant: 40),
             messageTextField.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -100),
             
             sendButton.topAnchor.constraint(equalTo: messageTextField.topAnchor),
             sendButton.leftAnchor.constraint(equalTo: messageTextField.rightAnchor, constant: 14),
-            sendButton.heightAnchor.constraint(equalToConstant: 50),
-            sendButton.widthAnchor.constraint(equalToConstant: 50)
+            sendButton.heightAnchor.constraint(equalToConstant: 40),
+            sendButton.widthAnchor.constraint(equalToConstant: 40)
             
             ])
         
@@ -177,6 +181,11 @@ class ChatViewController: UIViewController {
     
     @objc private func sendMessage() {
         
+        //Check Text Field for Emptyness
+        guard let text = messageTextField.text, !text.isEmpty else {
+            return
+        }
+        
         if let messageBody = messageTextField.text, let messageSender = Auth.auth().currentUser?.email {
             db.collection(K.FStore.collectionName).addDocument(data:[
                 K.FStore.senderField: messageSender,
@@ -196,6 +205,7 @@ class ChatViewController: UIViewController {
             }
             
         }
+       
         
     }
     
@@ -217,19 +227,21 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         let message  = messages[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIndentifierXib, for: indexPath) as! MessageCell
         cell.selectionStyle = .none
-        cell.Label.text = message.body
+        cell.label.text = message.body
          
         //Message from current user Customisation (UI/UX)
         if message.sender == Auth.auth().currentUser?.email {
             cell.leftImageView.isHidden = true
-            cell.MessageBubble.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
-            cell.Label.textColor = UIColor(named: K.BrandColors.purple)
+            cell.rightImageView.isHidden = false
+            cell.messageBubble.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
+            cell.label.textColor = UIColor(named: K.BrandColors.purple)
         } else {
             //TODO: Fix this shit
             cell.rightImageView.isHidden = true
             cell.leftImageView.isHidden = false
-            cell.MessageBubble.backgroundColor = UIColor(named: K.BrandColors.purple)
-            cell.Label.textColor = UIColor(named: K.BrandColors.lightPurple)
+            #warning("I Fix IT !!!")
+            cell.messageBubble.backgroundColor = UIColor(named: K.BrandColors.purple)
+            cell.label.textColor = UIColor(named: K.BrandColors.lightPurple)
         }
         
         tableView.separatorStyle = .none

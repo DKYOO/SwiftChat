@@ -9,7 +9,7 @@ import Foundation
 
 
 struct K {
-    static let appName = "🏎 SwiftChat"
+    static let appName = "🏎 SwiftChat 💨"
     static let register = "Register"
     static let logIn = "Log In"
     static let logOut = "Log Out"
@@ -21,6 +21,7 @@ struct K {
         static let emailPlaceHolderLogIn = "Email"
         static let passwordPlaceholderRegister = "Create Password"
         static let passwordPlaceholderLogIn = "Password"
+        static let messagePlaceholder = " Write a message..."
     }
     
     struct BrandColors {
@@ -47,6 +48,7 @@ struct K {
     struct Answers {
         static let yes = "Yes"
         static let no = "No"
+        static let ok = "Ok"
     }
     
 }

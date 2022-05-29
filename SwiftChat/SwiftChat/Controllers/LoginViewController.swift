@@ -121,9 +121,10 @@ class LoginViewController: UIViewController {
 				if let err = error {
 					DispatchQueue.main.async {
 						let alert = UIAlertController(title: K.Errors.otherError, message: "\(err.localizedDescription)" , preferredStyle: .alert)
-						alert.addAction(UIAlertAction(title: K.Answers.yes, style: .default, handler: nil))
-						alert.addAction(UIAlertAction(title: K.Answers.no, style: .cancel, handler: nil))
+						alert.addAction(UIAlertAction(title: K.Answers.ok, style: .default, handler: nil))
 						self.present(alert, animated: false)
+						self.emailTextfield.text?.removeAll()
+						self.passwordTextfield.text?.removeAll()
 					}
 				} else {
 					let chatViewController = ChatViewController()
