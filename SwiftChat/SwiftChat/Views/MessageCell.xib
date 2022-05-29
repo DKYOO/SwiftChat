@@ -10,68 +10,71 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" rowHeight="135" id="KGk-i7-Jjw" userLabel="MessageCell" customClass="MessageCell" customModule="SwiftChat" customModuleProvider="target" propertyAccessControl="none">
-            <rect key="frame" x="0.0" y="0.0" width="391" height="135"/>
+        <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" rowHeight="98" id="KGk-i7-Jjw" userLabel="MessageCell" customClass="MessageCell" customModule="SwiftChat" customModuleProvider="target" propertyAccessControl="none">
+            <rect key="frame" x="0.0" y="0.0" width="462" height="98"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="391" height="135"/>
+                <rect key="frame" x="0.0" y="0.0" width="462" height="98"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Pju-n9-3Ow">
-                        <rect key="frame" x="10" y="10" width="371" height="115"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6ph-7L-bvG">
+                        <rect key="frame" x="10" y="10" width="442" height="78"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAw-zK-ahN">
-                                <rect key="frame" x="0.0" y="0.0" width="311" height="50"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YouAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="CJc-sv-a0m">
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Etl-DJ-Fjv"/>
+                                    <constraint firstAttribute="height" constant="40" id="XaR-Tp-cNz"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeM-gT-TWY">
+                                <rect key="frame" x="60" y="0.0" width="322" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0d-jv-65r" propertyAccessControl="none">
-                                        <rect key="frame" x="10" y="10" width="291" height="30"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <bool key="isElement" value="NO"/>
-                                        </accessibility>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                        <color key="textColor" name="BrandLightPurple"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2QH-c5-rGU">
+                                        <rect key="frame" x="10" y="10" width="302" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" name="BrandPurple"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="v0d-jv-65r" secondAttribute="trailing" constant="10" id="4la-wo-30K"/>
-                                    <constraint firstItem="v0d-jv-65r" firstAttribute="leading" secondItem="FAw-zK-ahN" secondAttribute="leading" constant="10" id="Oej-L8-trx"/>
-                                    <constraint firstAttribute="bottom" secondItem="v0d-jv-65r" secondAttribute="bottom" constant="10" id="SOW-wu-2pl"/>
-                                    <constraint firstItem="v0d-jv-65r" firstAttribute="top" secondItem="FAw-zK-ahN" secondAttribute="top" constant="10" id="ViD-xW-ASP"/>
+                                    <constraint firstItem="2QH-c5-rGU" firstAttribute="leading" secondItem="yeM-gT-TWY" secondAttribute="leading" constant="10" id="5ai-3u-VTh"/>
+                                    <constraint firstAttribute="trailing" secondItem="2QH-c5-rGU" secondAttribute="trailing" constant="10" id="BXg-CS-UYg"/>
+                                    <constraint firstAttribute="bottom" secondItem="2QH-c5-rGU" secondAttribute="bottom" constant="10" id="tSe-de-EnW"/>
+                                    <constraint firstItem="2QH-c5-rGU" firstAttribute="top" secondItem="yeM-gT-TWY" secondAttribute="top" constant="10" id="x5q-1A-sGH"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MeAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="F0L-dY-FkX">
-                                <rect key="frame" x="331" y="0.0" width="40" height="40"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MeAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="RvT-yV-loK">
+                                <rect key="frame" x="402" y="0.0" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="WMo-6o-l4D"/>
-                                    <constraint firstAttribute="height" constant="40" id="vYw-It-Z9L"/>
+                                    <constraint firstAttribute="height" constant="40" id="Ylb-yS-c3Y"/>
+                                    <constraint firstAttribute="width" constant="40" id="ewz-Kt-qhj"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Pju-n9-3Ow" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="BlA-hg-WBe"/>
-                    <constraint firstItem="Pju-n9-3Ow" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="PIi-EN-8Tc"/>
-                    <constraint firstAttribute="bottom" secondItem="Pju-n9-3Ow" secondAttribute="bottom" constant="10" id="U5X-Qd-OoC"/>
-                    <constraint firstAttribute="trailing" secondItem="Pju-n9-3Ow" secondAttribute="trailing" constant="10" id="u3J-Am-mBD"/>
+                    <constraint firstAttribute="trailing" secondItem="6ph-7L-bvG" secondAttribute="trailing" constant="10" id="1BR-4j-2BM"/>
+                    <constraint firstAttribute="bottom" secondItem="6ph-7L-bvG" secondAttribute="bottom" constant="10" id="2X0-eP-pZP"/>
+                    <constraint firstItem="6ph-7L-bvG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="35K-wM-93P"/>
+                    <constraint firstItem="6ph-7L-bvG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="TYt-kR-txI"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="label" destination="v0d-jv-65r" id="hBc-4V-BSA"/>
-                <outlet property="messageBubble" destination="Pju-n9-3Ow" id="xJk-De-c30"/>
-                <outlet property="rightImageView" destination="F0L-dY-FkX" id="Inm-7x-jXT"/>
+                <outlet property="Label" destination="2QH-c5-rGU" id="iF4-xh-JCc"/>
+                <outlet property="MessageBubble" destination="yeM-gT-TWY" id="fii-OT-W43"/>
+                <outlet property="leftImageView" destination="CJc-sv-a0m" id="LvA-D2-rmi"/>
+                <outlet property="rightImageView" destination="CJc-sv-a0m" id="DYP-v2-fGT"/>
             </connections>
-            <point key="canvasLocation" x="38.405797101449281" y="62.611607142857139"/>
+            <point key="canvasLocation" x="89.855072463768124" y="50.223214285714285"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="MeAvatar" width="36" height="36"/>
-        <namedColor name="BrandLightPurple">
-            <color red="0.98000001907348633" green="0.9649999737739563" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="YouAvatar" width="36" height="36"/>
         <namedColor name="BrandPurple">
             <color red="0.67500001192092896" green="0.43500000238418579" blue="0.9179999828338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

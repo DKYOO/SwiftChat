@@ -14,7 +14,6 @@ struct K {
     static let logIn = "Log In"
     static let logOut = "Log Out"
     static let nibName = "MessageCell"
-    static let cellIndentifier = "new"
     static let cellIndentifierXib = "ReusableCell"
     
     struct Placeholders {

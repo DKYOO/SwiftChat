@@ -20,10 +20,6 @@ class ChatViewController: UIViewController {
     let db = Firestore.firestore()
     
     var messages: [Message] = []
-//        Message(sender: "jeniffer91@hello.com", body: "Hey 👋"),
-//        Message(sender: "jonh@yo.com", body: "Hello!"),
-//        Message(sender: "jeniffer91@hello.com", body: "What's up")
-//    ]
     
     //MARK: UIElements
     
@@ -41,8 +37,8 @@ class ChatViewController: UIViewController {
     
     let messageTextField: UITextField = {
         let text = UITextField()
-        text.font = .systemFont(ofSize: 20, weight: .bold)
-        text.placeholder = "Write your Message here"
+        text.font = .systemFont(ofSize: 20, weight: .light)
+        text.placeholder = "Write a message..."
         text.textColor = .systemGreen
         text.layer.cornerRadius = 7
         text.textAlignment = .left
@@ -106,16 +102,9 @@ class ChatViewController: UIViewController {
     
     func configureTableView() {
         
-        // set row height
-        tableView.rowHeight = 100
-        
         //register cells
         // tableView.register(NewCell.self, forCellReuseIdentifier: K.cellIndentifier)
         tableView.register(UINib(nibName: K.nibName, bundle: nil), forCellReuseIdentifier: K.cellIndentifierXib)
-        
-        // set constraints
-        // tableView.pin(to: view)
-        
         // delegates and Data
         tableView.delegate = self
         tableView.dataSource = self
@@ -147,7 +136,9 @@ class ChatViewController: UIViewController {
     func loadMessages() {
          
         db.collection(K.FStore.collectionName).order(by: K.FStore.dateField).addSnapshotListener { querySnapshot, error in
+            
             self.messages = []
+            
             if let e = error {
                 print ("There was an issue retriving data from Firestore.\(e)")
             } else {
@@ -160,6 +151,8 @@ class ChatViewController: UIViewController {
                             //ha - ha
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
+                                let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
                             }
                         }
                     }
@@ -194,6 +187,11 @@ class ChatViewController: UIViewController {
                     print("This was an issue to saving data to firestore, \(e)")
                 } else {
                     print ("Success save data")
+                    
+                    DispatchQueue.main.async {
+                        self.messageTextField.text = ""
+                    }
+                    
                 }
             }
             
@@ -215,9 +213,25 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         /* returning cells and content with cell configuration
         cell with all initializators in another file
         this method triggered by previous returning count to configure each row in tableView */
+        
+        let message  = messages[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIndentifierXib, for: indexPath) as! MessageCell
         cell.selectionStyle = .none
-        cell.label.text = messages[indexPath.row].body
+        cell.Label.text = message.body
+         
+        //Message from current user Customisation (UI/UX)
+        if message.sender == Auth.auth().currentUser?.email {
+            cell.leftImageView.isHidden = true
+            cell.MessageBubble.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
+            cell.Label.textColor = UIColor(named: K.BrandColors.purple)
+        } else {
+            //TODO: Fix this shit
+            cell.rightImageView.isHidden = true
+            cell.leftImageView.isHidden = false
+            cell.MessageBubble.backgroundColor = UIColor(named: K.BrandColors.purple)
+            cell.Label.textColor = UIColor(named: K.BrandColors.lightPurple)
+        }
+        
         tableView.separatorStyle = .none
         return cell
         // ?? UITableViewCell()
