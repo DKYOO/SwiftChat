@@ -1,4 +1,4 @@
-# SwiftChat
+# SwiftChat - Programmaticaly implementation project from Udemy ios Course
 Simple Chat with Firebase Authentifation, FireBase FireStore DataBase, learned how to create TableViews, Cells to reuse it, all made programaticaly, cells are created by .xib template
 and programmaticaly also.
 
